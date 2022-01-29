@@ -6,7 +6,7 @@ function HomePage() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    API.fetchTrendingMovie()
+    API.fetchTrendingMovies()
       .then(data => {
         setMovies([...data.results]);
       })
@@ -15,7 +15,7 @@ function HomePage() {
       });
   }, []);
 
-  console.log(movies);
+  // console.log(movies);
 
   return (
     <ul>

@@ -1,10 +1,32 @@
 const API_KEY = '5a591a24c1bcef1d547ab9097511afec';
-const BASE_URL = 'https://api.themoviedb.org/';
+const BASE_URL = 'https://api.themoviedb.org/3';
 
-async function fetchTrendingMovie() {
+async function fetchTrendingMovies() {
   try {
     const response = await fetch(
-      `${BASE_URL}3/trending/movie/day?api_key=${API_KEY}`,
+      `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`,
+    );
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.status_message);
+  }
+}
+
+async function fetchFullFilmDetails(id) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`,
+    );
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.status_message);
+  }
+}
+
+async function fetchFilmByName(name) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${name}`,
     );
     return await response.json();
   } catch (error) {
@@ -13,7 +35,9 @@ async function fetchTrendingMovie() {
 }
 
 const API = {
-  fetchTrendingMovie,
+  fetchTrendingMovies,
+  fetchFullFilmDetails,
+  fetchFilmByName,
 };
 
 export default API;
