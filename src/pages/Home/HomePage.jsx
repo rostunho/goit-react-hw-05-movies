@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import API from 'pages/services/api';
+import API from 'services/api';
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
