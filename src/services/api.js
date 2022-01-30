@@ -34,10 +34,22 @@ async function fetchFilmByName(name) {
   }
 }
 
+async function getFilmCredits(id) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`,
+    );
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.status_message);
+  }
+}
+
 const API = {
   fetchTrendingMovies,
   fetchFullFilmDetails,
   fetchFilmByName,
+  getFilmCredits,
 };
 
 export default API;
