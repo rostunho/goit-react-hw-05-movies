@@ -1,5 +1,18 @@
-function MoviesList({ movies }) {
-  return <p>test test test</p>;
+import { Link } from 'react-router-dom';
+
+function MoviesList({ movies, location }) {
+  console.log(movies);
+  return (
+    <ul>
+      {movies.map(movie => (
+        <li key={movie.id}>
+          <Link to={`${movie.id}`} state={{ from: location }}>
+            {movie.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default MoviesList;

@@ -6,10 +6,7 @@ import MoviesList from '../../components/MoviesList/MoviesList';
 function MoviesPages() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-
-  console.log(query);
-
-  // const location = useLocation();
+  const location = useLocation();
   // const navigation = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -42,7 +39,7 @@ function MoviesPages() {
         <input type="text" value={query} onChange={handleInput}></input>
         <button type="submit">Search</button>
       </form>
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies.length > 0 && <MoviesList movies={movies} location={location} />}
     </>
   );
 }
