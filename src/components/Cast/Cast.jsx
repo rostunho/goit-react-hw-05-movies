@@ -15,23 +15,23 @@ function Cast() {
     });
   }, [movieId]);
 
-  console.log(actors);
+  //   console.log(actors);
 
   return (
     <CastList>
-      {actors.map(actor => (
-        <CastItem key={actor.id}>
+      {actors.map(({ id, profile_path, name }) => (
+        <CastItem key={id}>
           <SmallThumb>
             <img
               src={
-                actor.profile_path
-                  ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
                   : imagePlaceholder
               }
-              alt={actor.name}
+              alt={name}
             />
           </SmallThumb>
-          <p>{actor.name}</p>
+          <p>{name}</p>
         </CastItem>
       ))}
     </CastList>

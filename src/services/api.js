@@ -45,11 +45,23 @@ async function getFilmCredits(id) {
   }
 }
 
+async function getFilmReviews(id) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+    );
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.status_message);
+  }
+}
+
 const API = {
   fetchTrendingMovies,
   fetchFullFilmDetails,
   fetchFilmByName,
   getFilmCredits,
+  getFilmReviews,
 };
 
 export default API;

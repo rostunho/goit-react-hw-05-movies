@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from 'components/Navigation/Navigation';
 import HomePage from 'pages/Home/HomePage';
 import MoviesPages from 'pages/Movies/MoviesPages';
@@ -22,6 +22,7 @@ function App() {
           <Route path="reviews" element={<Reviews />} />
         </Route>
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
