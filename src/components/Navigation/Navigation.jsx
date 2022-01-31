@@ -1,12 +1,13 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { NavLink, Nav } from './Navigation.styled';
 
 function Navigation() {
   return (
     <>
-      <nav>
+      <Nav>
         <NavLink to="/"> Home </NavLink>
         <NavLink to="movies"> Movie </NavLink>
-      </nav>
+      </Nav>
       <Outlet />
     </>
   );

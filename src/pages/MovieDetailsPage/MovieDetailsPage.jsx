@@ -1,33 +1,44 @@
 import { useEffect, useState } from 'react';
-import { useParams, NavLink, Outlet } from 'react-router-dom';
-import { Poster, Thumb, Description } from './MovieDetailPage.styled';
+import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import {
+  MovieDetailContainer,
+  GoBackButton,
+  Poster,
+  Thumb,
+  Description,
+  MovieDetailList,
+  MovieDetailItem,
+  NavLink,
+} from './MovieDetailPage.styled';
 
 import API from 'services/api';
-import imagePlaceholder from 'services/imagePlaceholder';
+import { imagePlaceholder } from 'services/imagePlaceholder';
 
 function MovieDetailsPage() {
   const [film, setFilm] = useState({});
   const { movieId } = useParams();
-  // console.log(movieId);
-
-  // const imagePlaceholder =
-  //   'https://st4.depositphotos.com/14953852/24651/v/600/depositphotos_246517344-stock-illustration-image-available-icon-vector-flat.jpg';
+  const [fromLocation, setFromLocation] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    setFromLocation(location.state?.from || '/');
     API.fetchFullFilmDetails(movieId).then(newFilm => {
-      //   console.log(newFilm);
       setFilm(newFilm);
     });
   }, [movieId]);
 
-  // console.dir(film);
+  const backOnClick = () => {
+    navigate(fromLocation);
+  };
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
     film;
-  // return <h1>This is {film.original_title} </h1>;
   return (
-    <>
-      <button type="button">Go back</button>
+    <MovieDetailContainer>
+      <GoBackButton type="button" onClick={backOnClick}>
+        Go back
+      </GoBackButton>
       <Poster>
         <Thumb>
           <img
@@ -58,17 +69,17 @@ function MovieDetailsPage() {
           </p>
         </Description>
       </Poster>
-      <ul>
+      <MovieDetailList>
         Additional information
-        <li>
+        <MovieDetailItem>
           <NavLink to="cast">Cast</NavLink>
-        </li>
-        <li>
+        </MovieDetailItem>
+        <MovieDetailItem>
           <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
+        </MovieDetailItem>
+      </MovieDetailList>
       <Outlet />
-    </>
+    </MovieDetailContainer>
   );
 }
 

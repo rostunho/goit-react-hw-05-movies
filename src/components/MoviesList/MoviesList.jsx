@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { MovieList, MovieItem, MovieLink } from './MovieList.styled';
 
 function MoviesList({ movies, location }) {
-  // console.log(location);
   return (
-    <ul>
+    <MovieList>
       {movies.map(movie => (
-        <li key={movie.id}>
-          <Link to={`${movie.id}`} state={{ from: location }}>
+        <MovieItem key={movie.id}>
+          <MovieLink to={`${movie.id}`} state={{ from: location }}>
             {movie.title}
-          </Link>
-        </li>
+          </MovieLink>
+        </MovieItem>
       ))}
-    </ul>
+    </MovieList>
   );
 }
 

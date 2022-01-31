@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import API from 'services/api';
+import { ReviewList } from './Review.styled';
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -12,10 +13,8 @@ function Reviews() {
     });
   }, [movieId]);
 
-  //   console.log(reviews);
-
   return (
-    <ul>
+    <ReviewList>
       {reviews.length > 0 ? (
         reviews.map(({ id, author, content }) => (
           <li key={id}>
@@ -26,7 +25,7 @@ function Reviews() {
       ) : (
         <p>We don't have any reviews for this movie</p>
       )}
-    </ul>
+    </ReviewList>
   );
 }
 

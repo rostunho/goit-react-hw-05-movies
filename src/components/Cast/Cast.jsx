@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import API from 'services/api';
-import imagePlaceholder from 'services/imagePlaceholder';
-import { SmallThumb, CastList, CastItem } from './Cast.styled';
+import { profileImagePlaceholder } from 'services/imagePlaceholder';
+import { SmallThumb, CastList, CastItem, ProfileImage } from './Cast.styled';
 
 function Cast() {
   const [actors, setActors] = useState([]);
   const { movieId } = useParams();
-  //   console.log(movieId);
 
   useEffect(() => {
     API.getFilmCredits(movieId).then(team => {
@@ -15,18 +14,16 @@ function Cast() {
     });
   }, [movieId]);
 
-  //   console.log(actors);
-
   return (
     <CastList>
       {actors.map(({ id, profile_path, name }) => (
         <CastItem key={id}>
           <SmallThumb>
-            <img
+            <ProfileImage
               src={
                 profile_path
                   ? `https://image.tmdb.org/t/p/w500${profile_path}`
-                  : imagePlaceholder
+                  : profileImagePlaceholder
               }
               alt={name}
             />
