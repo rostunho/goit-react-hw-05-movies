@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { AppContainer } from './App.styled';
+import { AppContainer, Loading } from './App.styled';
 
 const Navigation = lazy(() => import('./components/Navigation/Navigation'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -13,7 +13,7 @@ const Reviews = lazy(() => import('./components/Reviews/Reviews'));
 
 function App() {
   return (
-    <Suspense fallback={<div>...LOADING</div>}>
+    <Suspense fallback={<Loading>...LOADING</Loading>}>
       <AppContainer>
         <Routes>
           <Route path="/" element={<Navigation />}>
