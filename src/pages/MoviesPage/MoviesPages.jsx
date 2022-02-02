@@ -13,7 +13,6 @@ function MoviesPages() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-  // const navigation = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const movieToSearch = searchParams.get('query');

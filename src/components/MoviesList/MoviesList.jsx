@@ -4,10 +4,10 @@ import { MovieList, MovieItem, MovieLink } from './MovieList.styled';
 function MoviesList({ movies, location }) {
   return (
     <MovieList>
-      {movies.map(movie => (
-        <MovieItem key={movie.id}>
-          <MovieLink to={`${movie.id}`} state={{ from: location }}>
-            {movie.title}
+      {movies.map(({ id, title }) => (
+        <MovieItem key={id}>
+          <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+            {title}
           </MovieLink>
         </MovieItem>
       ))}

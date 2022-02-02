@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import API from 'services/api';
-import {
-  HomeLink,
-  HomeContainer,
-  HomeTitle,
-  HomeList,
-  HomeItem,
-} from './HomePage.styled';
+import MoviesList from 'components/MoviesList/MoviesList';
+import { HomeContainer, HomeTitle } from './HomePage.styled';
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -23,13 +18,7 @@ function HomePage() {
   return (
     <HomeContainer>
       <HomeTitle>Trending today</HomeTitle>
-      <HomeList>
-        {movies.map(({ id, title }) => (
-          <HomeItem key={id}>
-            <HomeLink to={`/movies/${id}`}>{title}</HomeLink>
-          </HomeItem>
-        ))}
-      </HomeList>
+      <MoviesList movies={movies} />
     </HomeContainer>
   );
 }
